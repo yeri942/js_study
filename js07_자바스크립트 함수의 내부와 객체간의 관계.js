@@ -20,3 +20,27 @@ let lion = new Animal();
 
 console.log(tiger); //__proto__:Object
 console.log(lion); //__proto__:Object
+
+// Animal 프로토타입 객체는 tiger, lion과 같은 객체들의 원형이 되는 객체
+// 따라서 tiger, lion과 같은 객체들은 모두 이 Animal 프로토타입 객체에 접근이 가능하고
+// 동시에 이 Animal 프로토타입 객체에 멤버 한개를 추가하면 tigerm lion 객체들도 동시에 이 멤버를 공유해서 모두가 사용이 가능.
+
+// 그럼 어떻게 이 Animal 프로토타입 객체에 멤버 하나를 추가하는거징?
+Animal.prototype.aniRun = function () {
+    return "동물이 달린다";
+};
+
+console.log("-------------------------------------");
+
+console.log(tiger.aniRun()); // 동물이 달린다
+console.log(lion.aniRun()); // 동물이 달린다
+
+// 부모에 있는 aniRun() 메서드를 tiger, lion 객체 내에 만들어버리면 객체 내에 만든 aniRun이 적용됨
+// tiger 객체 내에 aniRun() 메서드를 새롭게 추가
+tiger.aniRun = function () {
+    return "호랑이가 달린다앙";
+};
+
+console.log("-------------------------------------");
+
+console.log(tiger.aniRun()); // 호랑이가 달린다앙
